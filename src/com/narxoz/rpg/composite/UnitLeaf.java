@@ -1,7 +1,6 @@
 package com.narxoz.rpg.composite;
 
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public abstract class UnitLeaf implements CombatNode {
     private final String name;

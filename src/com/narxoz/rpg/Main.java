@@ -1,17 +1,8 @@
 package com.narxoz.rpg;
 
-import com.narxoz.rpg.battle.RaidEngine;
-import com.narxoz.rpg.battle.RaidResult;
-import com.narxoz.rpg.bridge.AreaSkill;
-import com.narxoz.rpg.bridge.FireEffect;
-import com.narxoz.rpg.bridge.IceEffect;
-import com.narxoz.rpg.bridge.SingleTargetSkill;
-import com.narxoz.rpg.bridge.Skill;
-import com.narxoz.rpg.composite.CombatNode;
-import com.narxoz.rpg.composite.EnemyUnit;
-import com.narxoz.rpg.composite.HeroUnit;
-import com.narxoz.rpg.composite.PartyComposite;
-import com.narxoz.rpg.composite.RaidGroup;
+import com.narxoz.rpg.battle.*;
+import com.narxoz.rpg.bridge.*;
+import com.narxoz.rpg.composite.*;
 
 public class Main {
     public static void main(String[] args) {

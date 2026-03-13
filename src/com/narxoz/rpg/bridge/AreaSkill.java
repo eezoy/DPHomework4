@@ -7,10 +7,23 @@ public class AreaSkill extends Skill {
         super(skillName, basePower, effect);
     }
 
+    private void applyAOE(CombatNode node, int damage) {
+        if (node.getChildren().isEmpty()) {
+            node.takeDamage(damage);
+            return;
+        }
+
+        for (CombatNode child : node.getChildren()) {
+            applyAOE(child, damage);
+        }
+    }
+
     @Override
     public void cast(CombatNode target) {
-        // TODO: Area Bridge action
-        // Apply resolved damage to a composite target.
-        // Tip: Let Composite classes decide how to distribute AOE damage.
+        if (target == null || !target.isAlive()) {
+            return;
+        }
+
+        applyAOE(target, resolvedDamage());
     }
 }
