@@ -3,7 +3,7 @@ package com.narxoz.rpg.battle;
 import com.narxoz.rpg.bridge.Skill;
 import com.narxoz.rpg.composite.CombatNode;
 
-import java.util.Random;
+import java.util.*;
 
 public class RaidEngine {
     private Random random = new Random(1L);
@@ -13,7 +13,7 @@ public class RaidEngine {
         return this;
     }
 
-    public RaidResult runRaid(CombatNode teamA, CombatNode teamB, Skill teamASkill, Skill teamBSkill) {
+    public RaidResult runRaid(CombatNode teamA, CombatNode teamB, List<Skill> teamASkills, List<Skill> teamBSkills) {
         RaidResult result = new RaidResult();
         result.addLine("Raid started: " + teamA.getName() + " vs " + teamB.getName());
 
@@ -28,6 +28,7 @@ public class RaidEngine {
 
             else {
                 int healthBefore = teamB.getHealth();
+                Skill teamASkill = teamASkills.get(random.nextInt(teamASkills.size()));
                 teamASkill.cast(teamB);
                 int totalDamage = healthBefore - teamB.getHealth();
 
@@ -45,6 +46,7 @@ public class RaidEngine {
                 
                 else {
                     int healthBefore = teamA.getHealth();
+                    Skill teamBSkill = teamBSkills.get(random.nextInt(teamBSkills.size()));
                     teamBSkill.cast(teamA);
                     int totalDamage = healthBefore - teamA.getHealth();
 
@@ -79,7 +81,10 @@ public class RaidEngine {
         else {
             result.setWinner(teamA.getHealth() > teamB.getHealth() ? teamA.getName() : teamB.getName());
         }
+
+        System.out.println();
         result.addLine("Battle finished. Winner: " + result.getWinner());
+        result.addLine("Total rounds: " + rounds);
         return result;
     }
 }
